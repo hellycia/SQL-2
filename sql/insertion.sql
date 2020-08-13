@@ -19,7 +19,9 @@ INSERT INTO `order` (id, user_id, date) VALUES
 (4, (SELECT id FROM user WHERE firstname='Marine'), NOW() ),
 (5, (SELECT id FROM user WHERE firstname='Carine'), '2019-10-03 22:45:12'),
 (6, (SELECT id FROM user WHERE firstname='Carine'), '2019-12-03 22:45:12'),
-(7, (SELECT id FROM user WHERE firstname='Carine'), '2019-12-25 22:45:12');
+(7, (SELECT id FROM user WHERE firstname='Carine'), '2019-12-25 22:45:12'),
+(8, (SELECT id FROM user WHERE firstname='Marc'), '2019-12-27 22:45:12');
+
 
 
 INSERT INTO order_line (order_id, product_id, price, quantity) VALUES
@@ -30,4 +32,5 @@ INSERT INTO order_line (order_id, product_id, price, quantity) VALUES
 (4, (SELECT id FROM product WHERE title='poster'), 15.45, 10 ),
 (5, (SELECT id FROM product WHERE title='chaussette'), 9.99, 1 ),
 (6, (SELECT id FROM product WHERE title='sweat'), 89.99, 5 ),
-(7, (SELECT id FROM product WHERE title='chaussette'), 89.99, 8 );
+(7, (SELECT id FROM product WHERE title='sweat'), 89.99, 8 ),
+(8, (SELECT id FROM product WHERE title='chaussette'), 9.99, 1 );

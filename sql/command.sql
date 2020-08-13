@@ -69,26 +69,12 @@ ORDER BY Quantité desc limit 1;
 
 
 -- Donner un bon de réduction de 5 euros pour tout client qui a commandé plus de 20 euros
--- pseudo code: insert into coupon un coupn where montant_commande > 20
-
 INSERT INTO coupon (user_id, price, quantity)
 VALUES (
-    (SELECT user.id, SUM(order_line.price*order_line.quantity) AS Montant_total
+    (SELECT user.id
     FROM user
     JOIN `order` ON `order`.user_id = user.id
-    JOIN order_line ON order_line.order_id = `order`.id
+    JOIN order_line ON `order`.id = order_line.order_id
     GROUP BY order_id
-    WHERE Montant_total > 20
+    HAVING SUM(order_line.price*order_line.quantity) > 20 limit 1
 ), 5, 1);
-
--- ajouter un coupon
-INSERT INTO coupon (price, quantity)
-VALUES (5, 1);
-
--- recuperer les users qui on des commandes de plus de 20e
-SELECT firstname, lastname, SUM(order_line.price*order_line.quantity) AS Montant_total
-FROM user
-JOIN `order` ON `order`.user_id = user.id
-JOIN order_line ON `order`.id = order_line.order_id
-GROUP BY order_id
-WHERE Montant_total > 20;

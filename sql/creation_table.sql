@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS order_line;
 DROP TABLE IF EXISTS `order`;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS product;
-DROP TABLE IF EXISTS coupn;
+DROP TABLE IF EXISTS coupon;
 
 CREATE TABLE IF NOT EXISTS user (
     id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS order_line (
 );
 
 CREATE TABLE IF NOT EXISTS coupon (
-    user_id int,
-    price decimal(5,2),
-    quantity int
+    user_id int NOT NULL,
+    price decimal(5,2) NOT NULL,
+    quantity int NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
